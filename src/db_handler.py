@@ -8,7 +8,8 @@ class DBHandler:
         self.refills = self.db['refills']
 
     def add_refill(self, data):
-        """Add a new refill record to the database."""
+        """Add a new refill record to the database, but first empty the db"""
+        self.refills.delete_many({'user_id': data['user_id']})
         self.refills.insert_one(data)
 
     def get_refills(self, user_id, start_date, end_date):
