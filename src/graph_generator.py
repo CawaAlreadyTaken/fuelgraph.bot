@@ -6,7 +6,8 @@ import os
 class GraphGenerator:
     def __init__(self):
         # Set style for better-looking graphs
-        plt.style.use('seaborn')
+        print(plt.style.available)
+        plt.style.use('seaborn-v0_8-dark')
         
     def generate_graph(self, data, graph_type, start_date, end_date):
         """Generate a graph based on the specified type and data."""
