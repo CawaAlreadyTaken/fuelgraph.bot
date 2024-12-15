@@ -64,8 +64,8 @@ async def price_received(update: Update, context):
         await update.message.reply_text("Great! Now enter the number of liters:")
         return ADDING_LITERS
     except ValueError:
-        await update.message.reply_text("Please enter a valid number for the price.")
-        return ADDING_PRICE
+        await update.message.reply_text("Invalid number for the price. Operation cancelled.")
+        return CHOOSING_ACTION
 
 async def liters_received(update: Update, context):
     """Handle received liters."""
@@ -75,8 +75,8 @@ async def liters_received(update: Update, context):
         await update.message.reply_text("Excellent! Now enter the kilometers travelled:")
         return ADDING_KM
     except ValueError:
-        await update.message.reply_text("Please enter a valid number for liters.")
-        return ADDING_LITERS
+        await update.message.reply_text("Invalid number for liters. Operation cancelled.")
+        return CHOOSING_ACTION
 
 async def km_received(update: Update, context):
     """Handle received kilometers and save all data."""
@@ -91,8 +91,8 @@ async def km_received(update: Update, context):
         await update.message.reply_text("Perfect! Finally, enter the timestamp, if needed:")
         return ADDING_TIMESTAMP
     except ValueError:
-        await update.message.reply_text("Please enter a valid number for kilometers.")
-        return ADDING_KM
+        await update.message.reply_text("Invalid number for kilometers. Operation cancelled.")
+        return CHOOSING_ACTION
 
 async def timestamp_received(update: Update, context):
     """Handle received timestamp and save all data."""
