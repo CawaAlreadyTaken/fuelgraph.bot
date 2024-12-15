@@ -11,7 +11,7 @@ logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s
 logger = logging.getLogger(__name__)
 
 # States for conversation handler
-CHOOSING_ACTION, ADDING_PRICE, ADDING_LITERS, ADDING_KM, ADDING_TIMESTAMP, CHOOSING_GRAPH, CHOOSING_PERIOD = range(6)
+CHOOSING_ACTION, ADDING_PRICE, ADDING_LITERS, ADDING_KM, ADDING_TIMESTAMP, CHOOSING_GRAPH, CHOOSING_PERIOD = range(7)
 
 # Initialize database handler
 db = DBHandler()
@@ -82,12 +82,7 @@ async def km_received(update: Update, context):
     """Handle received kilometers and save all data."""
     try:
         km = float(update.message.text)
-        data = {
-            'user_id': update.effective_user.id,
-            'price': context.user_data['price'],
-            'liters': context.user_data['liters'],
-            'km': km
-        }
+        context.user_data['km'] = km
         await update.message.reply_text("Perfect! Finally, enter the timestamp, if needed:")
         return ADDING_TIMESTAMP
     except ValueError:
@@ -207,7 +202,7 @@ def main():
             ADDING_PRICE: [MessageHandler(filters.TEXT & ~filters.COMMAND, price_received)],
             ADDING_LITERS: [MessageHandler(filters.TEXT & ~filters.COMMAND, liters_received)],
             ADDING_KM: [MessageHandler(filters.TEXT & ~filters.COMMAND, km_received)],
-            ADDING_TIMESTAMP: [MessageHandler(filters.TEXT & ~filters.COMMAND, km_received)],
+            ADDING_TIMESTAMP: [MessageHandler(filters.TEXT & ~filters.COMMAND, timestamp_received)],
             CHOOSING_GRAPH: [CallbackQueryHandler(handle_graph_choice)],
             CHOOSING_PERIOD: [CallbackQueryHandler(handle_period_choice)]
         },
