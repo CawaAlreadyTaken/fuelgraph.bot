@@ -68,4 +68,11 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 - MongoDB team for the amazing database
 - All contributors and users of FuelGraph
 
-[Add your screenshots and demo images here]
+## Examples
+
+![Fuel Consumption graph](images/fuel_consumption.jpg)  
+
+![Fuel Price graph](images/fuel_price.jpg)  
+
+![Kilometers Travelled graph](images/km_travelled.jpg)  
+
