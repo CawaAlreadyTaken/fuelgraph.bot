@@ -1,3 +1,4 @@
+from typing import Any
 from pymongo import MongoClient
 from datetime import datetime
 
@@ -7,13 +8,18 @@ class DBHandler:
         self.db = self.client['fuelgraph']
         self.refills = self.db['refills']
 
-    def add_refill(self, data):
+    def add_refill(self, data: dict[str, Any]):
         """Add a new refill record to the database."""
         self.refills.insert_one(data)
 
-    def get_refills(self, user_id, start_date, end_date):
+    def get_refills(
+        self,
+        user_id: int,
+        start_date: datetime,
+        end_date: datetime
+     ) -> list[Any]:
         """Get refill records for a specific user and date range."""
-        query = {
+        query: dict[str, int | str | dict[str, datetime]] = {
             'user_id': user_id,
             'timestamp': {
                 '$gte': start_date,
