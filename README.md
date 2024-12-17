@@ -52,7 +52,7 @@ docker-compose up -d
 - Total fuel consumption
 - Distance traveled
 - Cost analysis
-- Efficiency metrics (km/l)
+- Efficiency metrics (km/L)
 
 ## 🤝 Contributing
 
